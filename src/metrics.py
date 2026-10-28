@@ -23,3 +23,6 @@ def top_categories(df, n=3):
 def revenue_by_city(df):
     return df.groupby("city")["revenue"].sum().sort_values(ascending=False)
 
+# Summera intäkt per månad, göra om datum till månad för att ta reda på försäljning över tid månadsvis
+def revenue_by_month(df):
+    return df.groupby(df["date"].dt.to_period("M"))["revenue"].sum()
