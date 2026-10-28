@@ -10,3 +10,16 @@ def total_units(df):
 #varje rad i csv data, len (df) ger antal ordrar
 def aov(df):
     return total_revenue(df) / len(df)
+
+#summera intäkt efter kategori, störst först
+def revenue_by_category(df):
+    return df.groupby("category")["revenue"].sum().sort_values(ascending=False)
+
+#topp 3 kategorier efter intäkt, störst först
+def top_categories(df, n=3):
+    return revenue_by_category(df).head(n)
+
+#Intäkt per stad, störst först
+def revenue_by_city(df):
+    return df.groupby("city")["revenue"].sum().sort_values(ascending=False)
+
